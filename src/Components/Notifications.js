@@ -14,7 +14,7 @@ const Notifications = ({ notifications, clickHandler }) => (
 )
 
 const mapStateToProps = state => ({
-    notifications: state.notifications.unread,
+    notifications: state.notifications.filter(notification => !notification.read),
 })
 
 const mapDispatchToProps = dispatch => ({
