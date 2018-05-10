@@ -14,12 +14,12 @@ class App extends Component {
       <div>
         <Page {...params} />
         <Notifications />
+        <pre id="redux-state">{JSON.stringify(this.props.state.user, null, 2)}</pre>
       </div>
     );
   }
 }
 
-//<pre id="redux-state">{JSON.stringify(this.props.state, null, 2)}</pre>
 
 const mapStateToProps = state => ({
   location: state.location,
