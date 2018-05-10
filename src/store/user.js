@@ -10,6 +10,7 @@ export const login = (username, password) => dispatch => {
     return axios.post('/api/login', { username, password }).then(response => {
         dispatch(loginSuccess(response.data.result))
     }).catch(e => {
+        console.error('Error logging in:', e)
         dispatch(loginFail())
     })
 }
