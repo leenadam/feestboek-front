@@ -1,10 +1,15 @@
 import { createAction, handleActions } from 'redux-actions';
 
-export const addNotification = createAction('NOTIFICATION_ADD');
+var id = 0;
+export const addNotification = createAction('NOTIFICATION_ADD', payload => ({
+    id: id++,
+    content: payload,
+}))
+
 export const markNotificationAsRead = createAction('NOTIFICATION_MARK_AS_READ');
 
 const initialState = {
-    read: [], 
+    read: [],
     unread: [],
 }
 

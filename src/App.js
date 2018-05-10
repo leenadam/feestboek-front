@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
 import { match } from './router'
 import Notifications from 'Components/Notifications'
 import './App.css'
@@ -13,11 +14,12 @@ class App extends Component {
       <main>
         <Page {...params} />
         <Notifications />
-        <pre id="redux-state">{JSON.stringify(this.props.state, null, 2)}</pre>
       </main>
     );
   }
 }
+
+//<pre id="redux-state">{JSON.stringify(this.props.state, null, 2)}</pre>
 
 const mapStateToProps = state => ({
   location: state.location,

@@ -1,8 +1,12 @@
-#redux-state {
+#notifications {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 200px;
+}
+
+#notifications > div {
+    cursor: pointer;
     background-color: dimgray;
     padding: 20px;
+    margin-top: 20px;
 }
