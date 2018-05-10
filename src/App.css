@@ -10,12 +10,3 @@
     padding: 20px;
     margin-top: 20px;
 }
-
-.notification {
-    transition: opacity 150ms ease-in-out;
-    opacity: 1;
-}
-
-.notification.exiting {
-    opacity: 0;
-}
