@@ -14,7 +14,7 @@ class App extends Component {
       <div>
         <Page {...params} />
         <Notifications />
-        <pre id="redux-state">{JSON.stringify(this.props.state.user, null, 2)}</pre>
+        <pre id="redux-state">{JSON.stringify(this.props.state, null, 2)}</pre>
       </div>
     );
   }
