@@ -1,1 +1,8 @@
-
+#redux-state {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    background-color: dimgray;
+    padding: 20px;
+}

@@ -1,0 +1,9 @@
+components="Message Messages User Users Party Parties"
+rm -rf `echo $components`
+mkdir `echo $components`
+for dir in $components; do
+    skel -source Component -dest $dir
+done
+
+skel -source skel/Page -dest src/Pages/About
+skel -source skel/Component_ -dest src/Components/Link
