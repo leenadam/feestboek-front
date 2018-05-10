@@ -11,9 +11,7 @@ const AboutView = ({ hello }) => (
 )
 
 const mapDispatchToProps = dispatch => ({
-    hello: () => {
-        dispatch(addNotification('Hello there!'))
-    }
+    hello: () => dispatch(addNotification('Hello there!')),
 })
 
 export default connect(null, mapDispatchToProps)(AboutView)

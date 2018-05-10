@@ -1,20 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Transition } from 'react-transition-group'
 import { markNotificationAsRead } from 'store/notifications'
 
 const Notifications = ({ notifications, clickHandler }) => (
     <div id="notifications">
         {notifications.map(notification =>
-            <div className="notification"
+            <Transition
                 key={notification.id}
-                onClick={clickHandler(notification.id)}>
-                {notification.content}
-            </div>)}
+                in={!notification.read}
+                timeout={150}
+                unmountOnExit>
+                {state =>
+                    <div className={`notification ${state}`}
+                        onClick={clickHandler(notification.id)}>
+                        {notification.content}
+                    </div>}
+            </Transition>
+        )}
     </div>
 )
 
 const mapStateToProps = state => ({
-    notifications: state.notifications.filter(notification => !notification.read),
+    notifications: state.notifications,
 })
 
 const mapDispatchToProps = dispatch => ({
