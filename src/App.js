@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { match } from './router'
+import Notifications from 'Components/Notifications'
 import './App.css'
 
 class App extends Component {
@@ -8,11 +9,10 @@ class App extends Component {
     const { route, params } = match(this.props.location.pathname)
     const Page = route.page
 
-    console.log(route, params, Page)
-
     return (
       <main>
         <Page {...params} />
+        <Notifications />
         <pre id="redux-state">{JSON.stringify(this.props.state, null, 2)}</pre>
       </main>
     );
