@@ -11,10 +11,10 @@ class App extends Component {
     const Page = route.page
 
     return (
-      <main>
+      <div>
         <Page {...params} />
         <Notifications />
-      </main>
+      </div>
     );
   }
 }

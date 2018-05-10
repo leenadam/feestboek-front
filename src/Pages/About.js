@@ -3,25 +3,17 @@ import { connect } from 'react-redux'
 
 import { addNotification } from 'store/notifications'
 
-class AboutView extends React.PureComponent {
-    componentWillMount() { }
-
-    render() {
-        return (
-            <div>
-                <h1>The About page</h1>
-                <button onClick={this.props.hello}>notify</button>
-            </div>
-        )
-    }
-}
-
-const mapStateToProps = null
+const AboutView = ({ hello }) => (
+    <main>
+        <h1>The About page</h1>
+        <button onClick={hello}>hello</button>
+    </main>
+)
 
 const mapDispatchToProps = dispatch => ({
     hello: () => {
-        dispatch(addNotification('yay !! ' + Math.random()))
+        dispatch(addNotification('Hello there!'))
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AboutView)
+export default connect(null, mapDispatchToProps)(AboutView)

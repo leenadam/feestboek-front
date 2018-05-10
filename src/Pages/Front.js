@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 import Link from 'Components/Link'
 
 const FrontView = ({ hello }) => (
-    <div>
+    <main>
         <h1>The front page</h1>
         <Link to="/about">Goto about</Link>
-    </div>
+    </main>
 )
 
 const mapStateToProps = state => ({
