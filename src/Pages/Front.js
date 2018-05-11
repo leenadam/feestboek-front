@@ -1,25 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
-// import Link from 'Components/Link'
-// import RegisterForm from 'Components/RegisterForm'
-// import LoginForm from 'Components/LoginForm'
-
-const FrontView = ({ hello }) => (
+const FrontView = () => (
     <main>
         <h1>Feestboek</h1>
         <ul>
-            <li>How to block facebook on a dns level.</li>
-            <li>How to (and why) install linux instead of windows or ios</li>
-            <li>How to run kali in a virtualbox</li>
+            <li>Connect to friends</li>
+            <li>Create parties</li>
+            <li>Invite friends</li>
+            <li>Post pictures</li>
+            <li>Party!</li>
         </ul>
+        <p>Feestboek is currently in closed beta, you need an invitation code to join.</p>
     </main>
 )
 
-const mapStateToProps = state => ({
-})
-
-const mapDispatchToProps = dispatch => ({
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(FrontView)
+export default FrontView
