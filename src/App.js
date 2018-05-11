@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { match } from './router'
 import Notifications from 'Components/Notifications'
+import Nav from 'Components/Nav'
 import './App.css'
 
 class App extends Component {
@@ -12,6 +13,8 @@ class App extends Component {
 
     return (
       <div>
+        <Nav />
+        <hr />
         <Page {...params} />
         <hr />
         <Notifications />
