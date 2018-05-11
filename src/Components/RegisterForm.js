@@ -1,11 +1,16 @@
 import React from 'react'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
-import { login } from 'store/user'
+import { register } from 'store/user'
 
-const LoginFormView = ({ handleSubmit, error, invalid, submitting }) => {
+const RegisterFormView = ({ handleSubmit, error, invalid, submitting }) => {
     return (
         <form onSubmit={handleSubmit}>
             {error && <div>{error}</div>}
+
+            <div>
+                <label htmlFor="code">Code:</label>
+                <Field name="code" component="input" type="text" />
+            </div>
 
             <div>
                 <label htmlFor="username">Username:</label>
@@ -18,14 +23,17 @@ const LoginFormView = ({ handleSubmit, error, invalid, submitting }) => {
             </div>
 
             <button disabled={submitting} type="submit">
-                Login
+                Register
             </button>
         </form>
     )
 }
 
-const validate = ({ username, password }) => {
+const validate = ({ code, username, password }) => {
     const errors = {}
+    if (!code) {
+        errors.code = 'missing code'
+    }
     if (!username) {
         errors.username = 'missing username'
     }
@@ -35,9 +43,9 @@ const validate = ({ username, password }) => {
     return errors
 }
 
-const onSubmit = ({ username, password }, dispatch, props) => {
-    return dispatch(login(username, password)).then(() => {
-        if (props.onLogin) props.onLogin()
+const onSubmit = ({ code, username, password }, dispatch, props) => {
+    return dispatch(register(code, username, password)).then(() => {
+        if (props.onRegister) props.onRegister()
     }).catch(error => {
         throw new SubmissionError({
             '_error': error.response.data.error,
@@ -45,14 +53,15 @@ const onSubmit = ({ username, password }, dispatch, props) => {
     })
 }
 
-const LoginForm = reduxForm({
-    form: 'login',
+const RegisterForm = reduxForm({
+    form: 'Register',
     validate,
     onSubmit,
     initialValues: {
+        code: "yes",
         username: "olmo",
         password: "test",
     },
-})(LoginFormView)
+})(RegisterFormView)
 
-export default LoginForm
+export default RegisterForm

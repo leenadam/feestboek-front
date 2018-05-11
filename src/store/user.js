@@ -15,12 +15,25 @@ export const login = (username, password) => dispatch => {
     })
 }
 
+const registerStart = createAction('USER_REGISTER_START');
+const registerSuccess = createAction('USER_REGISTER_SUCCESS');
+const registerFail = createAction('USER_REGISTER_FAIL');
+
+export const register = (code, username, password) => dispatch => {
+    dispatch(registerStart())
+    return axios.post('/api/register', { code, username, password }).then(response => {
+        dispatch(registerSuccess(response.data.result))
+    }).catch(e => {
+        dispatch(registerFail())
+        throw e
+    })
+}
+
 const logoutSuccess = createAction('USER_LOGOUT_SUCCESS');
 
 export const logout = () => dispatch => {
-    return axios.post('/api/logout').finally(() => {
-        dispatch(logoutSuccess())
-    })
+    dispatch(logoutSuccess())
+    return axios.post('/api/logout')
 }
 
 const initialState = {
@@ -30,17 +43,17 @@ const initialState = {
 }
 
 export const reducer = handleActions({
-    [loginStart]: (state, action) => ({
+    [combineActions(loginStart, registerStart)]: (state, action) => ({
         inProgress: true,
         loggedIn: false,
         profile: null,
     }),
-    [loginSuccess]: (state, action) => ({
+    [combineActions(loginSuccess, registerSuccess)]: (state, action) => ({
         inProgress: false,
         loggedIn: true,
         profile: action.payload,
     }),
-    [combineActions(loginFail, logoutSuccess)]: (state, action) => ({
+    [combineActions(loginFail, registerFail, logoutSuccess)]: (state, action) => ({
         inProgress: false,
         loggedIn: false,
         profile: null,
