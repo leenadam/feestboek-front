@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'redux-first-routing'
 
 import { match } from './router'
 import Notifications from 'Components/Notifications'
@@ -8,9 +9,15 @@ import './App.css'
 
 class App extends Component {
   render() {
-    const { route, params } = match(this.props.location.pathname)
-    const Page = route.page
+    const { dispatch, loggedIn } = this.props
 
+    const { route, params } = match(this.props.location.pathname)
+    if (route.loggedIn && !loggedIn) {
+      dispatch(push('/'))
+      return null
+    }
+
+    const Page = route.page
     return (
       <div>
         <Nav />
@@ -27,6 +34,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   location: state.location,
+  loggedIn: state.user.loggedIn,
   state,
 })
 

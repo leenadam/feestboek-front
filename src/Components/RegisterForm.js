@@ -54,7 +54,7 @@ const onSubmit = ({ code, username, password }, dispatch, props) => {
 }
 
 const RegisterForm = reduxForm({
-    form: 'Register',
+    form: 'register',
     validate,
     onSubmit,
     initialValues: {

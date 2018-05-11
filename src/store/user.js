@@ -29,6 +29,21 @@ export const register = (code, username, password) => dispatch => {
     })
 }
 
+const deregisterStart = createAction('USER_DEREGISTER_START');
+const deregisterSuccess = createAction('USER_DEREGISTER_SUCCESS');
+const deregisterFail = createAction('USER_DEREGISTER_FAIL');
+
+export const deregister = (password) => (dispatch, getState) => {
+    dispatch(deregisterStart())
+    const state = getState()
+    return axios.post('/api/deregister', { username: state.user.profile.username, password }).then(response => {
+        dispatch(deregisterSuccess())
+    }).catch(e => {
+        dispatch(deregisterFail())
+        throw e
+    })
+}
+
 const logoutSuccess = createAction('USER_LOGOUT_SUCCESS');
 
 export const logout = () => dispatch => {
@@ -48,12 +63,17 @@ export const reducer = handleActions({
         loggedIn: false,
         profile: null,
     }),
+    [deregisterStart]: (state, action) => ({
+        inProgress: true,
+        loggedIn: false,
+        profile: state.profile,
+    }),
     [combineActions(loginSuccess, registerSuccess)]: (state, action) => ({
         inProgress: false,
         loggedIn: true,
         profile: action.payload,
     }),
-    [combineActions(loginFail, registerFail, logoutSuccess)]: (state, action) => ({
+    [combineActions(loginFail, registerFail, logoutSuccess, deregisterSuccess, deregisterFail)]: (state, action) => ({
         inProgress: false,
         loggedIn: false,
         profile: null,

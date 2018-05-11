@@ -9,9 +9,9 @@ const Nav = ({ dispatch, username, loggedIn }) => {
     if (loggedIn) {
         return (
             <nav>
-                <Link to="/profile">{username}</Link>
-                <Link to="/party/create">Create party</Link>
-                <Link to="/party/search">Search party</Link>
+                <Link to="/profile">Profile</Link>
+                {/*<Link to="/party/create">Create party</Link>
+                <Link to="/party/search">Search party</Link>*/}
                 <LogoutButton onLogout={() => dispatch(push("/"))} />
             </nav>
         )

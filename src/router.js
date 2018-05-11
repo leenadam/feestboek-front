@@ -13,7 +13,8 @@ const routes = [
     { path: '/about', name: 'about', page: About },
     { path: '/register', name: 'register', page: Register },
     { path: '/login', name: 'login', page: Login },
-    { path: '/profile', name: 'profile', page: Profile },
+
+    { loggedIn: true, path: '/profile', name: 'profile', page: Profile },
 ]
 
 const notFoundRoute = { name: 'notFound', page: NotFound }
