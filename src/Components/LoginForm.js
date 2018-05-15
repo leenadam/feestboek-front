@@ -49,10 +49,10 @@ const LoginForm = reduxForm({
     form: 'login',
     validate,
     onSubmit,
-    initialValues: {
-        username: "olmo",
-        password: "test",
-    },
+    // initialValues: {
+    //     username: "olmo",
+    //     password: "test",
+    // },
 })(LoginFormView)
 
 export default LoginForm
